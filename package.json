@@ -1,0 +1,15 @@
+{
+  "name": "proshop-v2",
+  "version": "1.0.0",
+  "description": "MERN eCommerce ",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "sulfidate.solutions",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
