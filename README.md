@@ -1,16 +1,16 @@
-# proshop-v2
+# MyShop
 
-#MERN from Scratch 2023 | eCommerce Platform
+#MERN from Scratch (Jun. 2023) | eCommerce Platform
 
-I. Tools:
-- VSCode - ES7 React Native Snippets - Prettier - JS ES6 code Snippets - CodePilot - Github Dark
+I. Tools: (all Tools installed via homebrew)
+- VSCode (with -> ES7 React Native Snippets, Prettier, JS ES6 code Snippets,  CodePilot, Github Dark)
 - Git
 - Node.js
 - Postman
 - React Developer Tools
-- Redux DevTools Mit brew aufgesetzt.
+- Redux DevTools
 
-II. Ordnerstruktur  proshop-v2  frontend  backend
+II. Folder:  MyShop /frontend /backend
 
 III.  CLIENT SITE -Frontend with React, Redux, Client Interface:
 1. React Seite erstellen -> npx create-react-app frontend
@@ -34,14 +34,14 @@ IV.  SERVER SITE - Backend with node.js express server
     1. import express from ‘express’
     2. const port = 3001 (5000 is taken)
     3. const app = expres()
-    4. app.get( ‘/‘, (req, res) => { res.send(‘API is running…’) })
+    4. app.get( ‘/‘, (req, res) => {res.send(‘API is running…’)})
     5. app.listen(port, () => console.log(‘Server running on port ${port}’))
-8. Nodemon & Concurrently $ npm i -D nodemon concurrently implement in package.json = "server": "nodemon backend/server.js" (changes get automatically, no server restart) "client": "npm start --prefix frontend" (goes to frontend folder and start server)  "dev": "concurrently \"npm run server\" \"npm run client\"" to start the server backend / frontend / and both togethter
-9. Environment Variables $ npm i -D dotenv => .env in the root:  NODE_ENV=development PORT=3001 => server.js: import dotenv from "dotenv" dotenv.config() const port = process.env.PORT || 3002
-Fetch Products => frontend/package.json: "proxy": "http://localhost:8000", => HomeScreen.jsx: import { useEffect, useState } from 'react' import Product from '../components/Product' import { Row, Col } from 'react-bootstrap' import axios from 'axios'  const HomeScreen = () => {   const [products, setProducts] = useState([])   useEffect(() => {     const fetchProducts = async () => {       const { data } = await axios.get('/api/products')       setProducts(data)     }     fetchProducts()   }, [])  => ProductScreen.jsx:  import React from 'react' import { useParams } from 'react-router-dom' import { useState, useEffect } from 'react' import Rating from '../components/Rating' import { Link } from 'react-router-dom' import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap' import axios from 'axios'  const ProductScreen = () => {     const [product, setProduct] = useState({})     const { id: productId } = useParams()      useEffect(() => {         const fetchProduct = async () => {             const { data } = await axios.get(`/api/products/${productId}`)             setProduct(data)         }         fetchProduct()     }, [productId]) 
-10. MongoDB Atlas Setup Setup Cloud Database MDB Atlas  - create Projekt - Build Database - M0 - AWS - DE-Server - add username Connect to App: string for application = copy and fill in .env - fill in passwort and database name Browse Collections: add my own data - database name - collection name .env should be in .gitignore add new file: example.env without values to show wich variables needed for the app
-11. MongoDB Compass Setup Compass is the GUI to MongoDB setup: Download, install, open - search connection string for Compass in MDB Atlas and copy it to URI in Compass, change Password and Database - connect 
-12. mongoose - connect with mongoose in /backend/config/db.js: 
+8. Nodemon & Concurrently$ npm i -D nodemon concurrentlyimplement in package.json ="server": "nodemon backend/server.js" (changes get automatically, no server restart)"client": "npm start --prefix frontend" (goes to frontend folder and start server) "dev": "concurrently \"npm run server\" \"npm run client\""to start the server backend / frontend / and both togethter
+9. Environment Variables$ npm i -D dotenv=> .env in the root: NODE_ENV=developmentPORT=3001=> server.js:import dotenv from "dotenv"dotenv.config()const port = process.env.PORT || 3002
+Fetch Products=> frontend/package.json:"proxy": "http://localhost:8000",=> HomeScreen.jsx:import { useEffect, useState } from 'react'import Product from '../components/Product'import { Row, Col } from 'react-bootstrap'import axios from 'axios'const HomeScreen = () => {  const [products, setProducts] = useState([])  useEffect(() => {    const fetchProducts = async () => {      const { data } = await axios.get('/api/products')      setProducts(data)    }    fetchProducts()  }, [])=> ProductScreen.jsx: import React from 'react'import { useParams } from 'react-router-dom'import { useState, useEffect } from 'react'import Rating from '../components/Rating'import { Link } from 'react-router-dom'import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'import axios from 'axios'const ProductScreen = () => {    const [product, setProduct] = useState({})    const { id: productId } = useParams()    useEffect(() => {        const fetchProduct = async () => {            const { data } = await axios.get(`/api/products/${productId}`)            setProduct(data)        }        fetchProduct()    }, [productId])
+10. MongoDB Atlas SetupSetup Cloud Database MDB Atlas - create Projekt- Build Database - M0 - AWS - DE-Server - add usernameConnect to App: string for application = copy and fill in .env - fill in passwort and database nameBrowse Collections: add my own data - database name - collection name.env should be in .gitignoreadd new file: example.env without values to show wich variables needed for the app
+11. MongoDB Compass SetupCompass is the GUI to MongoDB setup: Download, install, open - search connection string for Compass in MDB Atlas and copy it to URI in Compass, change Password and Database - connect
+12. mongoose - connect with mongoose in /backend/config/db.js:
     import mongoose from "mongoose";
     
     const connectDB = async () => {
@@ -57,8 +57,8 @@ Fetch Products => frontend/package.json: "proxy": "http://localhost:8000",�
     
         export default connectDB;
 
-13.  Modeling data like for => backend/models/userModel.js: import mongoose from "mongoose"; const userSchema = mongoose.Schema(   // Schema is a class     {         name: { type: String, required: true },         email: { type: String, required: true, unique: true }, // unique: true means that email must be unique         password: { type: String, required: true },         isAdmin: { type: Boolean, required: true, default: false },     }     , {         timestamps: true     } ) const User = mongoose.model('User', userSchema ) export default User  
-14. => productModel.js import mongoose from "mongoose";
+13.  Modeling data like for => backend/models/userModel.js:import mongoose from "mongoose";const userSchema = mongoose.Schema(   // Schema is a class    {        name: { type: String, required: true },        email: { type: String, required: true, unique: true }, // unique: true means that email must be unique        password: { type: String, required: true },        isAdmin: { type: Boolean, required: true, default: false },    }    , {        timestamps: true    })const User = mongoose.model('User', userSchema)export default User
+14. => productModel.jsimport mongoose from "mongoose";
 
 const reviewSchema = mongoose.Schema(   // Schema is a class    
     {
@@ -189,7 +189,7 @@ export default Order
 
 16. => Prepare sample data: 
 
-=> /backend/data/users.js  import bcrypt from 'bcryptjs';
+=> /backend/data/users.jsimport bcrypt from 'bcryptjs';
 
 const users = [
     {
@@ -294,7 +294,7 @@ const products = [
 export default products
 
 
-17. => Seeding sample data:  import mongoose from "mongoose";
+17. => Seeding sample data:import mongoose from "mongoose";
 import dotenv from "dotenv";
 import colors from "colors";
 import users from "./data/users.js";
@@ -416,9 +416,9 @@ const asyncHandler = (fn) => (req, res, next) =>
     Promise.resolve(fn(req, res, next)).catch(next)
 
 export default asyncHandler
-  
+
 19. Custom Error Middleware
- Create custom Error Handler to be more elegant with error handling:  $ fetch /backend/middleware/ -> errorMiddleware.js
+Create custom Error Handler to be more elegant with error handling:$ fetch /backend/middleware/ -> errorMiddleware.js
 
 const notFound = (req, res, next) => {
     const error = new Error(`Not Found - ${req.originalUrl}`);
@@ -508,13 +508,13 @@ router.get('/:id', asyncHandler (async (req, res) => {
 
 export default router
 
- 
-20. Product Controller 
+
+20. Product Controller
 
 
 
 
- 
+
 
 
 
