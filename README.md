@@ -1,4 +1,4 @@
-# MyShop
+# proshop-v2
 
 #MERN from Scratch (Jun. 2023) | eCommerce Platform
 
@@ -10,7 +10,7 @@ I. Tools: (all Tools installed via homebrew)
 - React Developer Tools
 - Redux DevTools
 
-II. Folder:  MyShop /frontend /backend
+II. Folder:  proshop-v2 /frontend /backend
 
 III.  CLIENT SITE -Frontend with React, Redux, Client Interface:
 1. React Seite erstellen -> npx create-react-app frontend
