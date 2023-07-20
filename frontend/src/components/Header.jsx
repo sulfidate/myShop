@@ -18,9 +18,9 @@ const Header = () => {
                 alt="logo"
                 width="30"
                 height="30"
-                className="d-inline-block align-top"
+                className="d-inline-block align-top me-2"
               />
-              ProShop
+              MyShop
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
