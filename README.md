@@ -1,6 +1,6 @@
 # 00 README FIRST
 
-In this project i will build an eCommerce platform from the ground up. The e-shop that I am building will include the following features:
+In this project I will be building an eCommerce platform from scratch. The e-shop I will build will include the following features:
 
 
 
@@ -20,13 +20,7 @@ In this project i will build an eCommerce platform from the ground up. The e-sho
 
 
 
-This eShop is developed in a linear and progressive way using React, Redux, Node, Express & MongoDB, JWT authentication in a HTTP-only cookie, a fully featured shopping cart with PayPal & credit/debit payments, an admin area to manage customers, products & orders, a complete product rating & review system and a product search, carousel and pagination.
-
-
-
-In this project the following development techniques and tools are realized:
-
-
+This eShop was developed in a linear and progressive way, using React, Redux, Node, Express & MongoDB, JWT authentication in an HTTP-only cookie, a fully featured shopping cart with PayPal & credit/debit payments, an administration area to manage customers, products & orders, a complete product rating & review system and a product search, carousel and pagination. The following development techniques and tools are used in the project:
 
 * React with functional components & hooks
 * React router
