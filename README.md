@@ -36,7 +36,11 @@ This eShop was developed in a linear and progressive way, using React, Redux, No
 ## Tools in use:
 I work with the following toolkit:
 
-* VSCode - ES7 React Native Snippets - Prettier - JS ES6 code Snippets - CodePilot
+* VSCode
+    * ES7 React Native Snippets
+    * Prettier
+    * JS ES6 code Snippets
+    * CodePilot
 * Git
 * Node.js
     * Express
