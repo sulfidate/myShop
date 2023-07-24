@@ -17,16 +17,6 @@ userSchema.methods.matchPassword = async function (enteredPassword) { // matchPa
     return await bcrypt.compare(enteredPassword, this.password); // this.password is the password of the user
 };
 
-userSchema.pre('save', async function (next) { // pre is a middleware
-    if (!this.isModified('password')) { // if password is not modified
-        next();
-    }
-
-    const salt = await bcrypt.genSalt(10); // generate salt
-    this.passwword = await bcrypt.hash(this.password, salt); // hash password
-
-});
-
 const User = mongoose.model('User', userSchema);
 
 export default User;
