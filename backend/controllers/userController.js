@@ -137,7 +137,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route GET /api/users
 // @access Private/Admin
 const getUser = asyncHandler(async (req, res) => {
-    res.send("get users");
+    const users = await User.find({}); // find all users
+    res.status(200).json(users);
 }
 );
 
@@ -145,7 +146,21 @@ const getUser = asyncHandler(async (req, res) => {
 // @route DELETE /api/users/:id
 // @access Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
-    res.send("delete user");
+    const user = await User.findById(req.params.id); // find user by id
+
+    if (user) { // if user exists
+        if (user.isAdmin) { // if user is admin
+            res.status(400);
+            throw new Error("Cannot delete admin user");
+        }
+        await user.deleteOne({ _id: user._id }); // delete user
+        res.status(200).json({
+            message: "User deleted successfully"
+        });
+    } else { // if user does not exist
+        res.status(404);
+        throw new Error("User not found");
+    }
 }
 );
 
@@ -153,7 +168,13 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/:id
 // @access Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
-    res.send("get user by id");
+    const user = await User.findById(req.params.id).select('-password'); // find user by id and exclude password
+    if (user) { // if user exists
+        res.status(200).json(user);
+    } else { // if user does not exist
+        res.status(404);
+        throw new Error("User not found");
+    }
 }
 );
 
@@ -161,7 +182,27 @@ const getUserById = asyncHandler(async (req, res) => {
 // @route PUT /api/users/:id
 // @access Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
-    res.send("update user");
+    const user = await User.findById(req.params.id); // find user by id
+
+    if (user) { // if user exists
+        user.name = req.body.name || user.name; // if name is provided, update name
+        user.email = req.body.email || user.email; // if email is provided, update email
+        user.isAdmin = Boolean(req.body.isAdmin); // if isAdmin is provided, update isAdmin
+
+        const updatedUser = await user.save(); // save updated user
+
+        res.status(200).json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+
+        });
+    } else { // if user does not exist
+        res.status(404);
+        throw new Error("User not found");
+
+    }
 }
 );
 
