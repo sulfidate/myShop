@@ -2,8 +2,10 @@ import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button,Row, Col } from 'react-bootstrap'
 import {FaEdit, FaTrash } from 'react-icons/fa'
+import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
+import Paginate from '../../components/Paginate'
 import { toast } from 'react-toastify';
 import {
     useGetProductsQuery,
@@ -12,7 +14,10 @@ import {
 } from '../../slices/productsApiSlice';
 
 const ProductListScreen = () => {
-    const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+
+    const { pageNumber } = useParams();
+
+    const { data, isLoading, error, refetch } = useGetProductsQuery( { pageNumber } );
 
     const [createProduct, { isLoading: loadingCreate }] = useCreateProductMutation();
     
@@ -73,7 +78,7 @@ const ProductListScreen = () => {
                           </tr>
                       </thead>
                       <tbody>
-                          {products.map(product => (
+                          {data.products.map(product => (
                               <tr key={product._id}>
                                   <td>{product._id}</td>
                                   <td>{product.name}</td>
@@ -94,7 +99,12 @@ const ProductListScreen = () => {
                           ))}
                       </tbody>
                       
-                      </Table>
+                  </Table>
+                    <Paginate
+                        pages={data.pages}
+                        page={data.page}
+                      isAdmin={true}
+                    />
                   </>   
           
           )}
