@@ -7,6 +7,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form, FormControl } from 'rea
 import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 import { useGetProductDetailsQuery, useCreateReviewMutation } from '../slices/productsApiSlice'
 import {addToCart} from '../slices/cartSlice'
 
@@ -67,6 +68,7 @@ const ProductScreen = () => {
             <Message variant='danger'> {error?.data?.message || error.error} </Message>
               ) : (
                       <>
+                            <Meta title={product.name} />
         <Row>
             <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
