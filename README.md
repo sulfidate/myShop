@@ -1,9 +1,6 @@
 # Introduction:
 
 In this project I will be building an eCommerce platform from scratch.<br><br>
-The eShop is developed by using: <br>
-React, Redux, Node, Express & MongoDB, JWT authentication in an HTTP-only cookie, a fully featured shopping cart with PayPal & credit/debit payments, an administration area to manage customers, products & orders, a complete product rating & review system and a product search, carousel and pagination.<br>
-
 ## Development Gear:
 
 - The following development techniques and tools are used in the project
